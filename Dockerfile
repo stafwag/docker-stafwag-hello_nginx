@@ -1,5 +1,5 @@
-FROM debian:buster
-# FROM registry.dmz.stafnet.local/stafwag/debian:buster
+ARG BASE_IMAGE=debian:buster
+FROM $BASE_IMAGE
 LABEL maintainer "staf wagemakers <staf@wagemakers.be>"
 
 RUN groupadd www -g 1000080
@@ -15,7 +15,8 @@ RUN apt-file update
 RUN apt-get -y install procps nvi
 RUN apt-get -y install telnet
 
-RUN apt-get -y install nginx-light
+RUN apt-get -y update
+RUN apt-get -y install nginx
 RUN chown www:www /var/lib/nginx/
 
 COPY etc/nginx.conf /home/www/etc/
