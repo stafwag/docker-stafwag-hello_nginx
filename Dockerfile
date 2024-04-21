@@ -1,5 +1,7 @@
-ARG BASE_IMAGE=debian:buster
-FROM $BASE_IMAGE
+ARG BASEIMAGE=debian:bullseye
+ARG TAG=bullseye
+ARG DEBIAN_FRONTEND=noninteractive
+FROM debian:$TAG
 LABEL maintainer "staf wagemakers <staf@wagemakers.be>"
 
 RUN groupadd www -g 1000080
