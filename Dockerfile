@@ -18,6 +18,7 @@ RUN apt-get -y install telnet
 RUN apt-get -y update
 RUN apt-get -y install nginx
 RUN chown www:0 /var/lib/nginx/
+RUN chmod -R 770 /var/lib/nginx/
 
 COPY etc/nginx.conf /home/www/etc/
 COPY www/index.html /home/www/html/
