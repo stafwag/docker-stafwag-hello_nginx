@@ -1,0 +1,4 @@
+apiVersion: v1
+description: Helm Chart for hello_nginx
+name: hello_nginx
+version: 0.0.1-1

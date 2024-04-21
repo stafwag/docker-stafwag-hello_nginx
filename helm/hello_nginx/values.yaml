@@ -1,0 +1,18 @@
+environment: development
+container: 
+    name: nginx-hello
+    image: 192.168.122.1:5000/stafwag/hello_nginx
+    tag:  latest
+    port: 8080
+name: nginx-hello
+replicas: 1
+service:
+  type: ClusterIP
+
+podSecurityContext: {}
+securityContext: {}
+
+route:
+  enabled: false
+  host: null
+  targetPort: http

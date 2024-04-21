@@ -1,0 +1,30 @@
+{{- if .Values.route.enabled -}}
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  annotations:
+    openshift.io/host.generated: "true"
+  labels:
+    app: {{ .Values.container.name }}
+  name: nginx-hello-route
+spec:
+  host: hello-tsthelm.apps-crc.testing
+  port:
+# This is the target port defined in the service
+# It migh be possible to use the service.port.name (didn't test it)
+    targetPort: 8080 
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+  to:
+    kind: Service
+    name: nginx-hello-service
+    weight: 100
+  wildcardPolicy: None
+status:
+  ingress:
+  - conditions:
+    - status: "True"
+      type: Admitted
+
+{{ end }}
