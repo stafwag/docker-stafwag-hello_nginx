@@ -5,10 +5,12 @@ LOCAL_IMAGE = stafwag/$(IMAGE_NAME):$(GIT_COMMIT_SHORT)
 
 default: build
 
+.PHONY:
+deps:
+	which podman
+
 .PHONY: build
 build: deps
 	podman build -t $(LOCAL_IMAGE) .
 
-.PHONY: 
-deps:
-	which podman
+include *.mk
