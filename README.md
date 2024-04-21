@@ -18,7 +18,7 @@ $ cd docker-stafwag-hello_nginx
 ### Build the image
 
 ```
-$ docker build -t stafwag/hello_nginx . 
+$ docker build -t stafwag/hello_nginx:$(git rev-parse --short HEAD) .
 ```
 
 ## Run
@@ -26,7 +26,7 @@ $ docker build -t stafwag/hello_nginx .
 Run
 
 ```
-$ docker run -d --rm --name myhello -p 127.0.0.1:8080:8080 stafwag/hello_nginx
+$ docker run -d --rm --name myhello -p 127.0.0.1:8080:8080 stafwag/hello_nginx:$(git rev-parse --short HEAD)
 ```
 
 Test

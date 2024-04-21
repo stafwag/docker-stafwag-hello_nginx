@@ -1,13 +1,11 @@
-ARG BASEIMAGE=debian:bullseye
-ARG TAG=bullseye
+ARG BASE_IMAGE=debian:bookworm
 ARG DEBIAN_FRONTEND=noninteractive
-FROM debian:$TAG
+FROM $BASE_IMAGE
 LABEL maintainer "staf wagemakers <staf@wagemakers.be>"
 
-RUN groupadd www -g 1000080
 RUN mkdir -p /home/www
 RUN mkdir -p /home/www/{etc,html}
-RUN useradd www -u 1000080 -d /home/www -s /usr/sbin/nologin -g www 
+RUN useradd www -u 10080 -d /home/www -s /usr/sbin/nologin -g 0 
 
 RUN apt-get -y update
 RUN apt-get -y upgrade
@@ -19,7 +17,7 @@ RUN apt-get -y install telnet
 
 RUN apt-get -y update
 RUN apt-get -y install nginx
-RUN chown www:www /var/lib/nginx/
+RUN chown www:0 /var/lib/nginx/
 
 COPY etc/nginx.conf /home/www/etc/
 COPY www/index.html /home/www/html/
