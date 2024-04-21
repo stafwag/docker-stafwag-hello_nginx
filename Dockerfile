@@ -10,10 +10,11 @@ RUN useradd www -u 10080 -d /home/www -s /usr/sbin/nologin -g 0
 RUN apt-get -y update
 RUN apt-get -y upgrade
 
+# Install some debug tools
+# Not recommend for a production envronment, but this is just a test image
 RUN apt-get -y install apt-file
 RUN apt-file update
-RUN apt-get -y install procps nvi
-RUN apt-get -y install telnet
+RUN apt-get -y install procps nvi telnet wget curl
 
 RUN apt-get -y update
 RUN apt-get -y install nginx
