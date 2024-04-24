@@ -8,7 +8,7 @@ metadata:
     app: {{ .Values.container.name }}
   name: nginx-hello-route
 spec:
-  host: hello-tsthelm.apps-crc.testing
+  host: {{ .Values.route.host | quote }}
   port:
 # This is the target port defined in the service
 # It migh be possible to use the service.port.name (didn't test it)
@@ -26,5 +26,4 @@ status:
   - conditions:
     - status: "True"
       type: Admitted
-
 {{ end }}
