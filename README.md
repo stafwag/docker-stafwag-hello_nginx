@@ -29,7 +29,7 @@ $ docker build -t stafwag/hello_nginx:$(git rev-parse --short HEAD) .
 
 ### Run
 
-Run
+Execute
 
 ```
 $ docker run -d --rm --name myhello -p 127.0.0.1:8080:8080 stafwag/hello_nginx:$(git rev-parse --short HEAD)
