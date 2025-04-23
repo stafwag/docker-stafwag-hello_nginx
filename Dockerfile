@@ -14,7 +14,7 @@ RUN apt-get -y upgrade
 # Not recommend for a production envronment, but this is just a test image
 RUN apt-get -y install apt-file
 RUN apt-file update
-RUN apt-get -y install procps nvi telnet wget curl
+RUN apt-get -y install procps nvi telnet wget curl iputils-ping bind9-dnsutils
 
 RUN apt-get -y update
 RUN apt-get -y install nginx

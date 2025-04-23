@@ -9,8 +9,9 @@ replicas: 1
 service:
   type: ClusterIP
 
-podSecurityContext: {}
 securityContext: {}
+podSecurityContext: {}
+containerSecurityContext: {}
 
 route:
   enabled: false
