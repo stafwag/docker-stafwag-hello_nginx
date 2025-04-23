@@ -11,6 +11,6 @@ deps:
 
 .PHONY: build
 build: deps
-	podman build -t $(LOCAL_IMAGE) .
+	podman build --no-cache -t $(LOCAL_IMAGE) .
 
 include *.mk

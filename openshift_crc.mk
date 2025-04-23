@@ -40,7 +40,7 @@ crc_push: crc_deps build crc_project crc_registry_login
 
 .PHONY: crc_deploy
 crc_deploy: crc_deps crc_push
-	helm install --set container.image=$(REMOTE_IMAGE) --set route.enabled="true" -n $(K8S_NS) hello helm/hello_nginx
+	helm install --set container.image=$(REMOTE_IMAGE) --set route.enabled="true" -n $(K8S_NS) hello helm/hello-nginx
 
 .PHONY: clean
 clean: crc_deps
