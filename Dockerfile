@@ -1,11 +1,11 @@
-ARG BASE_IMAGE=debian:bookworm
+ARG BASE_IMAGE=debian:trixie
 ARG DEBIAN_FRONTEND=noninteractive
 FROM $BASE_IMAGE
 LABEL maintainer "staf wagemakers <staf@wagemakers.be>"
 
 RUN mkdir -p /home/www
 RUN mkdir -p /home/www/{etc,html}
-RUN useradd www -u 10080 -d /home/www -s /usr/sbin/nologin -g 0 
+RUN useradd www -u 10080 -d /home/www -s /usr/sbin/nologin -g 0
 
 RUN apt-get -y update
 RUN apt-get -y upgrade
