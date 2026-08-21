@@ -12,7 +12,7 @@ spec:
   port:
 # This is the target port defined in the service
 # It migh be possible to use the service.port.name (didn't test it)
-    targetPort: 8080 
+    targetPort: 8080
   tls:
     termination: edge
     insecureEdgeTerminationPolicy: Redirect

@@ -1,5 +1,5 @@
 environment: development
-container: 
+container:
     name: nginx-hello
     image: 192.168.122.1:5000/stafwag/hello_nginx
     tag:  latest
