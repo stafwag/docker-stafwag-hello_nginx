@@ -28,4 +28,4 @@ spec:
           runAsNonRoot: true
 {{- else }}
           {{- toYaml .Values.containerSecurityContext | indent 12 }}
-{{- endif }}
+{{- end }}
