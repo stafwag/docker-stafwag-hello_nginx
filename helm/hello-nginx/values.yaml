@@ -1,3 +1,7 @@
+global:
+  compatibility:
+    openshift:
+      adaptSecurityContext: auto
 environment: development
 container:
     name: nginx-hello
@@ -9,9 +13,12 @@ replicas: 1
 service:
   type: ClusterIP
 
-securityContext: {}
 podSecurityContext: {}
-containerSecurityContext: {}
+
+containerSecurityContext:
+  privileged: false
+  runAsNonRoot: true
+  runAsGroup: 1080
 
 route:
   enabled: false

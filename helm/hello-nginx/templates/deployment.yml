@@ -14,6 +14,8 @@ spec:
       labels:
         app: {{ .Values.container.name }}
     spec:
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
       - name: nginx-hello
         image: {{ .Values.container.image }}
@@ -21,4 +23,9 @@ spec:
         ports:
         - containerPort: 8080
         securityContext:
+{{- if .Capabilities.APIVersions.Has "security.openshift.io/v1" }}
           privileged: false
+          runAsNonRoot: true
+{{- else }}
+          {{- toYaml .Values.containerSecurityContext | indent 12 }}
+{{- endif }}
