@@ -16,9 +16,14 @@ service:
 podSecurityContext: {}
 
 containerSecurityContext:
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop:
+    - ALL
   privileged: false
   runAsNonRoot: true
-  runAsGroup: 1080
+  runAsUser: 1000710000
+  runAsGroup: 1000710000
 
 route:
   enabled: false

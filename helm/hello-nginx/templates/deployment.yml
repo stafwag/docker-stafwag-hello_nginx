@@ -23,9 +23,13 @@ spec:
         ports:
         - containerPort: 8080
         securityContext:
-{{- if .Capabilities.APIVersions.Has "security.openshift.io/v1" }}
+{{- if and (.Capabilities.APIVersions.Has "security.openshift.io/v1") ( eq $.Values.global.compatibility.openshift.adaptSecurityContext "auto") }}
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+               - ALL
           privileged: false
           runAsNonRoot: true
 {{- else }}
-          {{- toYaml .Values.containerSecurityContext | indent 12 }}
+          {{- toYaml .Values.containerSecurityContext | nindent 12 }}
 {{- end }}
