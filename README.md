@@ -43,7 +43,7 @@ $ curl http://127.0.0.1:8080
 
 ## Makefile (Podman)
 
-A ```Makefile``` is included to build the image with [https://podman.io/](https://podman.io/) 
+A ```Makefile``` is included to build the image with [https://podman.io/](https://podman.io/)
 
 To build the image with ```podman```, execute ```make```
 
@@ -51,7 +51,7 @@ To build the image with ```podman```, execute ```make```
 $ make
 ```
 
-## OpenShift deployment local 
+## OpenShift deployment local
 
 ### Deploy
 
@@ -83,7 +83,7 @@ Go to the ```tsthelm``` project.
 ```
 [staf@vicky docker-stafwag-hello_nginx]$ oc project tsthelm
 Already on project "tsthelm" on server "https://api.crc.testing:6443".
-[staf@vicky docker-stafwag-hello_nginx]$ 
+[staf@vicky docker-stafwag-hello_nginx]$
 ```
 
 #### Verify pod
@@ -94,7 +94,7 @@ Ensure that the ```pod``` is in the running state.
 [staf@vicky docker-stafwag-hello_nginx]$ oc get po
 NAME                                      READY   STATUS    RESTARTS   AGE
 nginx-hello-deployment-7c78675dd4-c4hz4   1/1     Running   0          13m
-[staf@vicky docker-stafwag-hello_nginx]$ 
+[staf@vicky docker-stafwag-hello_nginx]$
 ```
 
 Login to the pod.
@@ -103,19 +103,19 @@ Login to the pod.
 [staf@vicky docker-stafwag-hello_nginx]$ oc rsh nginx-hello-deployment-7c78675dd4-c4hz4
 $ id
 uid=1000650000(1000650000) gid=0(root) groups=0(root),1000650000
-$ 
+$
 ```
 
 Verify the running processes.
 
 ```
-$ ps aux   
+$ ps aux
 USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
 1000650+       1  0.0  0.0  10460  6912 ?        Ss   17:33   0:00 /usr/sbin/nginx -c /home/www/etc/nginx.conf
 1000650+       2  0.0  0.0   2580  1536 pts/0    Ss   17:48   0:00 /bin/sh -c TERM="xterm-256color" /bin/sh
 1000650+       3  0.0  0.0   2580  1536 pts/0    S    17:48   0:00 /bin/sh
 1000650+       6  0.0  0.0   8092  4096 pts/0    R+   17:49   0:00 ps aux
-$ 
+$
 ```
 
 ### Check the route
@@ -126,7 +126,7 @@ Get the ```route``` for the deployed apllication.
 [staf@vicky docker-stafwag-hello_nginx]$ oc get route
 NAME                HOST/PORT                                    PATH   SERVICES              PORT   TERMINATION     WILDCARD
 nginx-hello-route   nginx-hello-route-tsthelm.apps-crc.testing          nginx-hello-service   8080   edge/Redirect   None
-[staf@vicky docker-stafwag-hello_nginx]$ 
+[staf@vicky docker-stafwag-hello_nginx]$
 ```
 
 Test the application.
@@ -143,7 +143,7 @@ Hello from Nginx on Debian GNU/Linux!
 <h1>Hello from Nginx on Debian GNU/Linux!</h1>
 </body>
 </html>
-[staf@vicky docker-stafwag-hello_nginx]$ 
+[staf@vicky docker-stafwag-hello_nginx]$
 ```
 
 ***Have fun!***

@@ -1,5 +1,9 @@
+global:
+  compatibility:
+    openshift:
+      adaptSecurityContext: auto
 environment: development
-container: 
+container:
     name: nginx-hello
     image: 192.168.122.1:5000/stafwag/hello_nginx
     tag:  latest
@@ -9,9 +13,17 @@ replicas: 1
 service:
   type: ClusterIP
 
-securityContext: {}
 podSecurityContext: {}
-containerSecurityContext: {}
+
+containerSecurityContext:
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop:
+    - ALL
+  privileged: false
+  runAsNonRoot: true
+  runAsUser: 1000710000
+  runAsGroup: 1000710000
 
 route:
   enabled: false

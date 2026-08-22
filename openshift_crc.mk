@@ -1,5 +1,5 @@
 # Makefile for OpenShift local (code ready containers)
-.PHONY: 
+.PHONY:
 crc_deps:
 	@echo "Checking for the required dependancies"
 	@echo
@@ -11,15 +11,15 @@ crc_deps:
 .PHONY: crc_project
 crc_project: crc_deps
 	@echo "Creating project: $(K8S_NS)"
-	oc get ns $(K8S_NS) || oc new-project $(K8S_NS) 
+	oc get ns $(K8S_NS) || oc new-project $(K8S_NS)
 
 .PHONY: crc_get_registry
 crc_get_registry: crc_deps
 # To get the registry on OpenShift need to have permissions on the openshift-image-regsitry ns
 # to get route for the external url. The default developer account doesn't have permissions to do this
-# 
+#
 # If you run this makefile as an user with the correct permissions you can uncomment the line below.
-#	 $(eval REGISTRY := $(shell oc get route default-route -n openshift-image-registry --template='{{ .spec.host }}')) 
+#	 $(eval REGISTRY := $(shell oc get route default-route -n openshift-image-registry --template='{{ .spec.host }}'))
 	#
 # Setting the REGISTRY variable manually to allow the default "developer" user to deploy.
 	$(eval REGISTRY = default-route-openshift-image-registry.apps-crc.testing)
@@ -34,7 +34,7 @@ crc_registry_login: crc_deps crc_get_registry
 crc_push: crc_deps build crc_project crc_registry_login
 	$(eval REMOTE_IMAGE = $(REGISTRY)/$(K8S_NS)/$(IMAGE_NAME):$(GIT_COMMIT_SHORT))
 	@echo tagging $(REMOTE_IMAGE)
-	podman tag $(LOCAL_IMAGE) $(REMOTE_IMAGE)  
+	podman tag $(LOCAL_IMAGE) $(REMOTE_IMAGE)
 	@echo Push to $(REMOTE_IMAGE)
 	podman push --tls-verify=false $(REMOTE_IMAGE)
 
