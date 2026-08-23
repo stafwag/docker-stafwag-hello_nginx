@@ -1,7 +1,7 @@
 ARG BASE_IMAGE=debian:trixie
-ARG DEBIAN_FRONTEND=noninteractive
 FROM $BASE_IMAGE
 LABEL maintainer "staf wagemakers <staf@wagemakers.be>"
+ENV DEBIAN_FRONTEND=noninteractive
 
 RUN mkdir -p /home/www
 RUN mkdir -p /home/www/{etc,html}
